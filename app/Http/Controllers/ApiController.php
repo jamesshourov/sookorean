@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +14,10 @@ class ApiController extends Controller
     public function __construct()
     {
         $this->middleware('auth.api:api', ['except' => ['login','signup']]);
+    }
+    protected function guard()
+    {
+        return Auth::guard();
     }
     public function signup(Request $request){
         $validator = Validator::make($request->all(),
@@ -55,5 +61,37 @@ class ApiController extends Controller
             $message = 'Something went wrong';
             return response()->json(compact('status', 'message'));
         }
+    }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'email' => 'required',
+                'password' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $credentials = array('email' => $request->email, 'password' => $request->password);
+        $user = DB::table('users')->where('email', $request->email)->first();
+        if (!empty($user)){
+            $userData = array(
+                'user_id' => encrypt($user->id),
+            );
+        }else{
+            $userData = null;
+        }
+        if (!$token = auth()->claims($userData)->attempt($credentials)) {
+            $status = false;
+            $errors = 'Email and password did not matched';
+            return response()->json(compact('status', 'errors'));
+        }
+        $status = true;
+        $user = User::select('id', 'name', 'email', 'role')->where('email', $request->email)->first();
+        return response()->json(compact('status', 'user', 'token'));
     }
 }

@@ -20,6 +20,11 @@ Route::get('/storage-link', function() {
     Artisan::call('storage:link', $output);
     dd('Done');
 });
+Route::get('/migrate', function() {
+    $output = [];
+    Artisan::call('migrate', $output);
+    dd('Done');
+});
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin-logout', [App\Http\Controllers\UserController::class, 'logout'])->name('admin.logout');
