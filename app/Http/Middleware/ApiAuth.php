@@ -9,7 +9,7 @@ class ApiAuth
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->guest()) {
+        if (auth('api')->guest()) {
             return response()->json(['errors' => 'Unauthorized'] , 401);
         }
         return $next($request);

@@ -128,4 +128,26 @@ class ApiController extends Controller
         $status = true;
         return response()->json(compact('status', 'categories'));
     }
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'old_password' => 'required',
+                'new_password' => 'required'
+            ],
+            [
+                'social_type.required' => 'Social type is required',
+                'name.required' => 'Name is required',
+                'email.required_if' => 'Email is required',
+                'password.required_if' => 'Password is required',
+                'email.unique' => 'Email already used',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+    }
 }
