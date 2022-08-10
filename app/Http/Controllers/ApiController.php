@@ -170,6 +170,10 @@ class ApiController extends Controller
                 $message = 'Old password is incorrect.';
                 return response()->json(compact('status', 'message'));
             }
+        }else{
+            $status = false;
+            $message = 'Old password is incorrect.';
+            return response()->json(compact('status', 'message'));
         }
     }
 }
