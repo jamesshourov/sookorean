@@ -15,10 +15,6 @@ class ApiController extends Controller
     {
         $this->middleware('auth.api:api', ['except' => ['login','signup']]);
     }
-    protected function guard()
-    {
-        return Auth::guard('api');
-    }
     public function profile()
     {
         return response()->json($this->guard()->user());
