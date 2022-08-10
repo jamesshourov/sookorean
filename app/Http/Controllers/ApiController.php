@@ -148,7 +148,7 @@ class ApiController extends Controller
         }
 
         $user = DB::table('users')
-            ->where('users.email', $this->guard()->user()->id)
+            ->where('id', $this->guard()->user()->id)
             ->first();
         if ($user){
             $credentials = array(
