@@ -1,0 +1,10 @@
+/*# sourceMappingURL=custom.min.css.map */
+.page-item.active .page-link {
+    background-color: #F6BFDF !important;
+    border-color: #F6BFDF !important;
+}
+.btn-success {
+    color: #fff;
+    background-color: #F6BFDF;
+    border-color: #F6BFDF;
+}
