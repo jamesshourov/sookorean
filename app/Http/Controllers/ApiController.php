@@ -87,7 +87,7 @@ class ApiController extends Controller
                 'user_id' => encrypt($user->id),
             );
         }else{
-            $userData = null;
+            $userData = [];
         }
         if (!$token = auth()->claims($userData)->attempt($credentials)) {
             $status = false;
