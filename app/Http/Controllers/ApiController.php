@@ -17,7 +17,7 @@ class ApiController extends Controller
     }
     protected function guard()
     {
-        return Auth::guard();
+        return Auth::guard('api');
     }
     public function profile()
     {
