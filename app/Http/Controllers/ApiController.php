@@ -148,7 +148,7 @@ class ApiController extends Controller
         }
 
         $user = DB::table('users')
-            ->where('users.email', $this->guard()->id())
+            ->where('users.email', $this->guard()->user()->id)
             ->first();
         if ($user){
             $credentials = array(
@@ -162,7 +162,7 @@ class ApiController extends Controller
                     'password' => Hash::make($request->new_password)
                 );
                 DB::table('users')
-                    ->where('id', $this->guard()->id())
+                    ->where('id', $this->guard()->user()->id)
                     ->update($password);
                 return response()->json(compact('message', 'status'));
             } else {
