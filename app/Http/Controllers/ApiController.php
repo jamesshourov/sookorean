@@ -94,4 +94,34 @@ class ApiController extends Controller
         $user = User::select('id', 'name', 'email', 'role')->where('email', $request->email)->first();
         return response()->json(compact('status', 'user', 'token'));
     }
+
+    public function getCarrots(Request $request)
+    {
+        $keyword = $request->keyword;
+        if (!empty($keyword)) {
+            $carrots = DB::table('carrots')
+                ->where('title_english', 'like', '%' . $keyword . '%')
+                ->get();
+        } else {
+            $carrots = DB::table('carrots')
+                ->get();
+        }
+        $status = true;
+        return response()->json(compact('status', 'carrots'));
+    }
+
+    public function getCategories(Request $request)
+    {
+        $keyword = $request->keyword;
+        if (!empty($keyword)) {
+            $categories = DB::table('categories')
+                ->where('title_english', 'like', '%' . $keyword . '%')
+                ->get();
+        } else {
+            $categories = DB::table('categories')
+                ->get();
+        }
+        $status = true;
+        return response()->json(compact('status', 'categories'));
+    }
 }

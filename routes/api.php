@@ -17,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'api'], function ($router) {
     Route::controller(\App\Http\Controllers\ApiController::class)->group(function () {
         Route::post('/signup',  'signup');
+        Route::post('/login',  'login');
+        Route::get('/carrots',  'getCarrots');
+        Route::get('/categories',  'getCategories');
     });
 });
