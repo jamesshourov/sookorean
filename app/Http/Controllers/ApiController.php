@@ -19,6 +19,10 @@ class ApiController extends Controller
     {
         return Auth::guard();
     }
+    public function profile()
+    {
+        return response()->json($this->guard()->user());
+    }
     public function signup(Request $request){
         $validator = Validator::make($request->all(),
             [
