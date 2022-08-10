@@ -137,17 +137,39 @@ class ApiController extends Controller
                 'new_password' => 'required'
             ],
             [
-                'social_type.required' => 'Social type is required',
-                'name.required' => 'Name is required',
-                'email.required_if' => 'Email is required',
-                'password.required_if' => 'Password is required',
-                'email.unique' => 'Email already used',
+                'old_password.required' => 'Old password is required',
+                'new_password.required' => 'New password is required',
             ]
         );
         if ($validator->fails()) {
             $status = false;
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
+        }
+
+        $user = DB::table('users')
+            ->where('users.email', $this->guard()->id())
+            ->first();
+        if ($user){
+            $credentials = array(
+                'email' => $user->email,
+                'password' => $request->old_password,
+            );
+            if (Auth::attempt($credentials)) {
+                $status = true;
+                $message = 'Password changed successfully.';
+                $password = array(
+                    'password' => Hash::make($request->new_password)
+                );
+                DB::table('users')
+                    ->where('id', $this->guard()->id())
+                    ->update($password);
+                return response()->json(compact('message', 'status'));
+            } else {
+                $status = false;
+                $message = 'Old password is incorrect.';
+                return response()->json(compact('status', 'message'));
+            }
         }
     }
 }
