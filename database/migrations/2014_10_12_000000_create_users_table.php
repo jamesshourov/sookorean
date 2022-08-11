@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('profile_pic')->nullable();
+            $table->string('profile_pic_type')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('korean_level')->nullable();
             $table->string('carrot_points')->default(0);

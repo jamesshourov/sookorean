@@ -13,17 +13,21 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.api:api', ['except' => ['login','signup']]);
+        $this->middleware('auth.api:api', ['except' => ['login', 'signup']]);
     }
+
     protected function guard()
     {
         return Auth::guard('api');
     }
+
     public function profile()
     {
         return response()->json($this->guard()->user());
     }
-    public function signup(Request $request){
+
+    public function signup(Request $request)
+    {
         $validator = Validator::make($request->all(),
             [
                 'name' => 'required',
@@ -82,11 +86,11 @@ class ApiController extends Controller
         }
         $credentials = array('email' => $request->email, 'password' => $request->password);
         $user = DB::table('users')->where('email', $request->email)->first();
-        if (!empty($user)){
+        if (!empty($user)) {
             $userData = array(
                 'user_id' => encrypt($user->id),
             );
-        }else{
+        } else {
             $userData = [];
         }
         if (!$token = auth('api')->claims($userData)->attempt($credentials)) {
@@ -150,7 +154,7 @@ class ApiController extends Controller
         $user = DB::table('users')
             ->where('id', $this->guard()->user()->id)
             ->first();
-        if ($user){
+        if ($user) {
             $credentials = array(
                 'email' => $user->email,
                 'password' => $request->old_password,
@@ -170,9 +174,53 @@ class ApiController extends Controller
                 $message = 'Old password is incorrect.';
                 return response()->json(compact('status', 'message'));
             }
-        }else{
+        } else {
             $status = false;
             $message = 'Old password is incorrect.';
+            return response()->json(compact('status', 'message'));
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        if ($request->profile_pic_type == 'external' && !empty($request->profile_pic)){
+            $data = [
+                'profile_pic_type' => $request->profile_pic_type,
+                'profile_pic' => $request->profile_pic,
+                'name' => $request->name,
+                'email' => $request->email,
+                'date_of_birth' => $request->date_of_birth,
+                'korean_level' => $request->korean_level,
+            ];
+        }else{
+            if ($request->hasFile('profile_pic')) {
+                $fileName = $request->file('profile_pic')->store('public/profile');
+                $fileName = str_replace('public/','storage/',$fileName);
+                $data = [
+                    'profile_pic' => $fileName,
+                    'profile_pic_type' => 'internal',
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'date_of_birth' => $request->date_of_birth,
+                    'korean_level' => $request->korean_level,
+                ];
+            }else{
+                $data = [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'date_of_birth' => $request->date_of_birth,
+                    'korean_level' => $request->korean_level,
+                ];
+            }
+        }
+        $saved = DB::table('users')->where('id', $this->guard()->user()->id)->update($data);
+        if ($saved) {
+            $status = true;
+            $message = 'Updated successfully.';
+            return response()->json(compact('status', 'message'));
+        } else {
+            $status = false;
+            $message = 'Something went wrong!';
             return response()->json(compact('status', 'message'));
         }
     }

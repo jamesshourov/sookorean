@@ -19,6 +19,7 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::post('/signup',  'signup');
         Route::post('/login',  'login');
         Route::post('/change-password',  'changePassword');
+        Route::post('/update-profile',  'updateProfile');
         Route::get('/profile',  'profile');
         Route::get('/carrots',  'getCarrots');
         Route::get('/categories',  'getCategories');
