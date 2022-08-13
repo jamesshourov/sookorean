@@ -113,6 +113,29 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('gif.add') || request()->routeIs('gif.all') || request()->routeIs('gif.edit') ? 'collapsed active' : '' }}"
+                       href="#sidebarGif" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarGif">
+                        <i class="ri-image-edit-fill"></i> <span data-key="t-apps">Gifs</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->routeIs('gif.add') || request()->routeIs('gif.all') || request()->routeIs('gif.edit') ? 'show' : '' }}"
+                         id="sidebarGif">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('gif.add') }}"
+                                   class="nav-link {{ request()->routeIs('gif.add') ? 'active' : '' }}"
+                                   data-key="t-chat">Add New Gif</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('gif.all') }}" class="nav-link {{ request()->routeIs('gif.all') ? 'active' : '' }}" data-key="t-calendar">
+                                    All Gif
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

@@ -57,7 +57,7 @@
                                                 <img class="img-fluid" src="{{ asset($row->image) }}"  alt="Image"/>
                                             </div>
                                             <input type="file" accept=".jpeg, .jpg, .png, .gif" class="form-control @error('image') is-invalid @enderror"
-                                                   name="image" required>
+                                                   name="image">
                                             @error('image')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

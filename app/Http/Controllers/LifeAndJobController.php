@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class LifeAndJobController extends Controller
 {
     public function addForm()
     {
@@ -17,17 +17,14 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'image' => ['required', 'mimes:jpeg,jpg,png,gif'],
+                'image' => ['mimes:jpeg,jpg,png,gif'],
                 'title_english' => 'required',
                 'description_english' => 'required',
-                'background_color' => 'required',
             ],
             [
-                'image.required' => 'Image is required',
                 'image.mimes' => 'This types of file is not allowed',
                 'title_english.required' => 'English title is required',
                 'description_english.required' => 'English description is required',
-                'background_color.required' => 'Background color is required',
             ]
         );
 
@@ -52,9 +49,9 @@ class CategoryController extends Controller
             'description_french' => $request->description_french,
             'description_spanish' => $request->description_spanish,
             'description_arabic' => $request->description_arabic,
-            'background_color' => $request->background_color,
+            'publisher' => $request->publisher,
         ];
-        $saved = DB::table('categories')->insert($data);
+        $saved = DB::table('life_and_jobs')->insert($data);
         if ($saved) {
             return redirect()->back()->with('success', 'Successfully saved!');
         } else {
@@ -66,11 +63,11 @@ class CategoryController extends Controller
     {
         $keyword = $request->keyword;
         if (!empty($keyword)) {
-            $rows = DB::table('categories')
+            $rows = DB::table('life_and_jobs')
                 ->where('title_english', 'like', '%' . $keyword . '%')
                 ->paginate(50);
         } else {
-            $rows = DB::table('categories')
+            $rows = DB::table('life_and_jobs')
                 ->paginate(50);
         }
         return view('category.index', compact('rows'));
@@ -78,7 +75,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $row = DB::table('categories')
+        $row = DB::table('life_and_jobs')
             ->where('id', $id)
             ->first();
         return view('category.edit', compact('row'));
@@ -86,7 +83,7 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        DB::table('categories')
+        DB::table('life_and_jobs')
             ->where('id', $id)
             ->delete();
         return redirect()->back()->with('success', 'Successfully Deleted');
@@ -98,12 +95,10 @@ class CategoryController extends Controller
             [
                 'title_english' => 'required',
                 'description_english' => 'required',
-                'background_color' => 'required',
             ],
             [
                 'title_english.required' => 'English title is required',
                 'description_english.required' => 'English description is required',
-                'background_color.required' => 'Background color is required',
             ]
         );
 
@@ -113,7 +108,7 @@ class CategoryController extends Controller
                 ->withInput();
         }
         if ($request->hasFile('image')) {
-            $fileName = $request->file('image')->store('public/carrot');
+            $fileName = $request->file('image')->store('public/jobs');
             $fileName = str_replace('public/','storage/',$fileName);
             $data = [
                 'image' => $fileName,
@@ -127,7 +122,7 @@ class CategoryController extends Controller
                 'description_french' => $request->description_french,
                 'description_spanish' => $request->description_spanish,
                 'description_arabic' => $request->description_arabic,
-                'background_color' => $request->background_color,
+                'publisher' => $request->publisher,
             ];
         }else{
             $data = [
@@ -141,10 +136,10 @@ class CategoryController extends Controller
                 'description_french' => $request->description_french,
                 'description_spanish' => $request->description_spanish,
                 'description_arabic' => $request->description_arabic,
-                'background_color' => $request->background_color,
+                'publisher' => $request->publisher,
             ];
         }
-        $saved = DB::table('categories')->where('id', $request->id)->update($data);
+        $saved = DB::table('life_and_jobs')->where('id', $request->id)->update($data);
         if ($saved) {
             return redirect()->back()->with('success', 'Successfully updated!');
         } else {

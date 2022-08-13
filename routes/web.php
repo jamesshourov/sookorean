@@ -57,6 +57,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/category/update', 'update')->name('category.update');
         Route::get('/category/delete/{id}', 'delete')->name('category.delete');
     });
+
+    Route::controller(\App\Http\Controllers\GifController::class)->group(function () {
+        Route::get('/gif/add-new', 'addForm')->name('gif.add');
+        Route::post('/gif/store',  'store')->name('gif.store');
+        Route::get('/gif/all', 'all')->name('gif.all');
+        Route::get('/gif/edit/{id}', 'edit')->name('gif.edit');
+        Route::post('/gif/update', 'update')->name('gif.update');
+        Route::get('/gif/delete/{id}', 'delete')->name('gif.delete');
+    });
 });
 Auth::routes();
 
