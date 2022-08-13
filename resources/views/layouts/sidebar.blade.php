@@ -159,6 +159,29 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('benefit.add') || request()->routeIs('benefit.all') || request()->routeIs('benefit.edit') ? 'collapsed active' : '' }}"
+                       href="#sidebarBenefit" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarBenefit">
+                        <i class="ri-hand-heart-line"></i> <span data-key="t-apps">Benefits</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->routeIs('benefit.add') || request()->routeIs('benefit.all') || request()->routeIs('benefit.edit') ? 'show' : '' }}"
+                         id="sidebarBenefit">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('benefit.add') }}"
+                                   class="nav-link {{ request()->routeIs('benefit.add') ? 'active' : '' }}"
+                                   data-key="t-chat">Add New Benefit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('benefit.all') }}" class="nav-link {{ request()->routeIs('benefit.all') ? 'active' : '' }}" data-key="t-calendar">
+                                    All Benefit
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

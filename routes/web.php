@@ -75,6 +75,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/life-and-job/update', 'update')->name('life-and-job.update');
         Route::get('/life-and-job/delete/{id}', 'delete')->name('life-and-job.delete');
     });
+
+    Route::controller(\App\Http\Controllers\BenefitController::class)->group(function () {
+        Route::get('/benefit/add-new', 'addForm')->name('benefit.add');
+        Route::post('/benefit/store',  'store')->name('benefit.store');
+        Route::get('/benefit/all', 'all')->name('benefit.all');
+        Route::get('/benefit/edit/{id}', 'edit')->name('benefit.edit');
+        Route::post('/benefit/update', 'update')->name('benefit.update');
+        Route::get('/benefit/delete/{id}', 'delete')->name('benefit.delete');
+    });
 });
 Auth::routes();
 
