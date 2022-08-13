@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/storage-link', function() {
     $output = [];
     Artisan::call('storage:link', $output);
-    dd('Done');
+    dd($output);
 });
 Route::get('/migrate', function() {
     $output = [];
