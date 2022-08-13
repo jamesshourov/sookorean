@@ -23,7 +23,7 @@ Route::get('/storage-link', function() {
 Route::get('/migrate', function() {
     $output = [];
     Artisan::call('migrate', $output);
-    dd('Done');
+    dd($output);
 });
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
