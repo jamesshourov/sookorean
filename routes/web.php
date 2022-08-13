@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/storage-link', function() {
     $output = [];
     Artisan::call('storage:link', $output);
-    dd($output);
+    dd(Artisan::output());
 });
 Route::get('/migrate', function() {
     $output = [];
     Artisan::call('migrate', $output);
-    dd($output);
+    dd(Artisan::output());
 });
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
