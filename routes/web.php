@@ -66,6 +66,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/gif/update', 'update')->name('gif.update');
         Route::get('/gif/delete/{id}', 'delete')->name('gif.delete');
     });
+
+    Route::controller(\App\Http\Controllers\LifeAndJobController::class)->group(function () {
+        Route::get('/life-and-job/add-new', 'addForm')->name('life-and-job.add');
+        Route::post('/life-and-job/store',  'store')->name('life-and-job.store');
+        Route::get('/life-and-job/all', 'all')->name('life-and-job.all');
+        Route::get('/life-and-job/edit/{id}', 'edit')->name('life-and-job.edit');
+        Route::post('/life-and-job/update', 'update')->name('life-and-job.update');
+        Route::get('/life-and-job/delete/{id}', 'delete')->name('life-and-job.delete');
+    });
 });
 Auth::routes();
 

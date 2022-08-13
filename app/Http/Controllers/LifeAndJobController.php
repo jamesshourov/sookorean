@@ -10,7 +10,7 @@ class LifeAndJobController extends Controller
 {
     public function addForm()
     {
-        return view('category.add');
+        return view('job.add');
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class LifeAndJobController extends Controller
                 ->withInput();
         }
         if ($request->hasFile('image')) {
-            $fileName = $request->file('image')->store('public/carrot');
+            $fileName = $request->file('image')->store('public/jobs');
             $fileName = str_replace('public/','storage/',$fileName);
         }
         $data = [
@@ -70,7 +70,7 @@ class LifeAndJobController extends Controller
             $rows = DB::table('life_and_jobs')
                 ->paginate(50);
         }
-        return view('category.index', compact('rows'));
+        return view('job.index', compact('rows'));
     }
 
     public function edit($id)
@@ -78,7 +78,7 @@ class LifeAndJobController extends Controller
         $row = DB::table('life_and_jobs')
             ->where('id', $id)
             ->first();
-        return view('category.edit', compact('row'));
+        return view('job.edit', compact('row'));
     }
 
     public function delete($id)

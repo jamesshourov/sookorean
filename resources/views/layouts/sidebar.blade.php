@@ -136,6 +136,29 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('life-and-job.add') || request()->routeIs('life-and-job.all') || request()->routeIs('life-and-job.edit') ? 'collapsed active' : '' }}"
+                       href="#sidebarJobs" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarJobs">
+                        <i class="ri-user-search-line"></i> <span data-key="t-apps">Life and Jobs</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->routeIs('life-and-job.add') || request()->routeIs('life-and-job.all') || request()->routeIs('life-and-job.edit') ? 'show' : '' }}"
+                         id="sidebarJobs">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('life-and-job.add') }}"
+                                   class="nav-link {{ request()->routeIs('life-and-job.add') ? 'active' : '' }}"
+                                   data-key="t-chat">Add New Life and Job</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('life-and-job.all') }}" class="nav-link {{ request()->routeIs('life-and-job.all') ? 'active' : '' }}" data-key="t-calendar">
+                                    All Life and Job
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
