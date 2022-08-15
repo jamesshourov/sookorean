@@ -37,7 +37,7 @@ class CategoryController extends Controller
                 ->withInput();
         }
         if ($request->hasFile('image')) {
-            $fileName = $request->file('image')->store('public/carrot');
+            $fileName = $request->file('image')->store('public/category');
             $fileName = str_replace('public/','storage/',$fileName);
         }
         $data = [
@@ -113,7 +113,7 @@ class CategoryController extends Controller
                 ->withInput();
         }
         if ($request->hasFile('image')) {
-            $fileName = $request->file('image')->store('public/carrot');
+            $fileName = $request->file('image')->store('public/category');
             $fileName = str_replace('public/','storage/',$fileName);
             $data = [
                 'image' => $fileName,

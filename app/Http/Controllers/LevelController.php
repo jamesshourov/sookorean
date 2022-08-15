@@ -104,13 +104,13 @@ class LevelController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'title_english' => 'required',
-                'description_english' => 'required',
+                'image' => ['mimes:jpeg,jpg,png,gif'],
                 'category_id' => 'required',
             ],
             [
                 'title_english.required' => 'English title is required',
-                'description_english.required' => 'English description is required',
                 'category_id.required' => 'Category is required',
+                'image.mimes' => 'This types of file is not allowed',
             ]
         );
 
