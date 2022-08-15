@@ -47,7 +47,7 @@
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('category.update') }}" method="post">
+                                <form action="{{ route('category.update') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $row->id }}">
                                     <div class="row gy-4">

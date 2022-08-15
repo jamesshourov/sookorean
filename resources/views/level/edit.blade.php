@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Edit Life and Jobs
+    Edit Level
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -15,12 +15,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Edit Life and Jobs</h4>
+                            <h4 class="mb-sm-0">Edit Level</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Life and Jobs</a></li>
-                                    <li class="breadcrumb-item active">Edit Life and Jobs</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Levels</a></li>
+                                    <li class="breadcrumb-item active">Edit Level</li>
                                 </ol>
                             </div>
 
@@ -43,11 +43,11 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title mb-0">Life and Jobs Information</h4>
+                                <h4 class="card-title mb-0">Level Information</h4>
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('life-and-job.update') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('level.update') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $row->id }}">
                                     <div class="row gy-4">
@@ -125,61 +125,16 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <label class="form-label">English Description</label>
-                                            <textarea name="description_english" class="form-control @error('description_english') is-invalid @enderror" rows="5">{{ $row->description_english }}</textarea>
-                                            @error('description_english')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Japanese Description</label>
-                                            <textarea name="description_japanese" class="form-control @error('description_japanese') is-invalid @enderror" rows="5">{{ $row->description_japanese }}</textarea>
-                                            @error('description_japanese')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">French Description</label>
-                                            <textarea name="description_french" class="form-control @error('description_french') is-invalid @enderror" rows="5">{{ $row->description_french }}</textarea>
-                                            @error('description_french')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Spanish Description</label>
-                                            <textarea name="description_spanish" class="form-control @error('description_spanish') is-invalid @enderror" rows="5">{{ $row->description_spanish }}</textarea>
-                                            @error('description_spanish')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Arabic Description</label>
-                                            <textarea name="description_arabic" class="form-control @error('description_arabic') is-invalid @enderror" rows="5" dir="rtl">{{ $row->description_arabic }}</textarea>
-                                            @error('description_arabic')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Publisher</label>
-                                            <input type="text"
-                                                   class="form-control @error('publisher') is-invalid @enderror" name="publisher"
-                                                   value="{{ $row->publisher }}">
-                                            @error('publisher')
+                                            <label class="form-label">Category</label>
+                                            <select name="category_id" id="" class="form-control category @error('title_arabic') is-invalid @enderror" required>
+                                                <option value="">Select category</option>
+                                                @foreach($categories as $cat)
+                                                    <option value="{{ $cat->id }}" @selected($row->category_id == $cat->id)>
+                                                        {{ $cat->title_english }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

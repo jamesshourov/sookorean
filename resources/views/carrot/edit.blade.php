@@ -47,7 +47,7 @@
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('carrot.update') }}" method="post">
+                                <form action="{{ route('carrot.update') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $row->id }}">
                                     <div class="row gy-4">

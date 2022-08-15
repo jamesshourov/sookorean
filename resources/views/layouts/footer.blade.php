@@ -22,9 +22,9 @@
 
 <!-- Dashboard init -->
 <script src="{{ asset('') }}assets/js/pages/dashboard-crm.init.js"></script>
-@yield('script')
 <!-- App js -->
 <script src="{{ asset('') }}assets/js/app.js"></script>
+@yield('script')
 </body>
 
 </html>

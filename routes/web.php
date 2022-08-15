@@ -84,6 +84,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/benefit/update', 'update')->name('benefit.update');
         Route::get('/benefit/delete/{id}', 'delete')->name('benefit.delete');
     });
+
+    Route::controller(\App\Http\Controllers\LevelController::class)->group(function () {
+        Route::get('/level/add-new', 'addForm')->name('level.add');
+        Route::post('/level/store',  'store')->name('level.store');
+        Route::get('/level/all', 'all')->name('level.all');
+        Route::get('/level/edit/{id}', 'edit')->name('level.edit');
+        Route::post('/level/update', 'update')->name('level.update');
+        Route::get('/level/delete/{id}', 'delete')->name('level.delete');
+    });
 });
 Auth::routes();
 
