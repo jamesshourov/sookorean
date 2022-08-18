@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/pull', function() {
+    exec('git pull');
+    dd('Pulled');
+});
 Route::get('/storage-link', function() {
     $output = [];
     Artisan::call('storage:link', $output);
