@@ -141,6 +141,24 @@
                                             @enderror
                                         </div>
 
+                                        <div class="col-md-12">
+                                            <label class="form-label">Membership Level</label>
+                                            <select name="premium" id="" class="form-control @error('premium') is-invalid @enderror" required>
+                                                <option value="">Select membership level</option>
+                                                <option value="0" @selected($row->premium == 0)>
+                                                    Free
+                                                </option>
+                                                <option value="1" @selected($row->premium == 1)>
+                                                    Premium
+                                                </option>
+                                            </select>
+                                            @error('premium')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Update</button>
                                         </div>

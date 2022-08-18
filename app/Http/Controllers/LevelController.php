@@ -45,6 +45,7 @@ class LevelController extends Controller
                 'title_spanish' => $request->title_spanish,
                 'title_arabic' => $request->title_arabic,
                 'category_id' => $request->category_id,
+                'premium' => $request->premium,
             ];
         }else{
             $data = [
@@ -54,6 +55,7 @@ class LevelController extends Controller
                 'title_spanish' => $request->title_spanish,
                 'title_arabic' => $request->title_arabic,
                 'category_id' => $request->category_id,
+                'premium' => $request->premium,
             ];
         }
         $saved = DB::table('levels')->insert($data);
@@ -130,6 +132,7 @@ class LevelController extends Controller
                 'title_spanish' => $request->title_spanish,
                 'title_arabic' => $request->title_arabic,
                 'category_id' => $request->category_id,
+                'premium' => $request->premium,
             ];
         }else{
             $data = [
@@ -139,6 +142,7 @@ class LevelController extends Controller
                 'title_spanish' => $request->title_spanish,
                 'title_arabic' => $request->title_arabic,
                 'category_id' => $request->category_id,
+                'premium' => $request->premium,
             ];
         }
         $saved = DB::table('levels')->where('id', $request->id)->update($data);

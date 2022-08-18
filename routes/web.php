@@ -93,6 +93,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/level/update', 'update')->name('level.update');
         Route::get('/level/delete/{id}', 'delete')->name('level.delete');
     });
+
+    Route::controller(\App\Http\Controllers\QuestionController::class)->group(function () {
+        Route::get('/question/{id}/add-new', 'addForm')->name('question.add');
+        Route::post('/question/store',  'store')->name('question.store');
+        Route::get('/question/{id}/all', 'all')->name('question.all');
+        Route::get('/question/edit/{id}', 'edit')->name('question.edit');
+        Route::post('/question/update', 'update')->name('question.update');
+        Route::get('/question/delete/{id}', 'delete')->name('question.delete');
+    });
 });
 Auth::routes();
 

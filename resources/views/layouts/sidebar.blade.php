@@ -183,16 +183,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') ? 'collapsed active' : '' }}"
+                    <a class="nav-link menu-link {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') || request()->routeIs('question.all') || request()->routeIs('question.add') || request()->routeIs('question.edit') ? 'collapsed active' : '' }}"
                        href="#sidebarQuiz" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarQuiz">
                         <i class="ri-questionnaire-line"></i> <span data-key="t-apps">Quiz</span>
                     </a>
-                    <div class="collapse menu-dropdown {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') ? 'show' : '' }}"
+                    <div class="collapse menu-dropdown {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') || request()->routeIs('question.all') || request()->routeIs('question.add') || request()->routeIs('question.edit') ? 'show' : '' }}"
                          id="sidebarQuiz">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('level.all') }}" class="nav-link {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') ? 'active' : '' }}" data-key="t-calendar">
+                                <a href="{{ route('level.all') }}" class="nav-link {{ request()->routeIs('level.add') || request()->routeIs('level.all') || request()->routeIs('level.edit') || request()->routeIs('question.all') || request()->routeIs('question.add') || request()->routeIs('question.edit') ? 'active' : '' }}" data-key="t-calendar">
                                     Manage Levels
                                 </a>
                             </li>
