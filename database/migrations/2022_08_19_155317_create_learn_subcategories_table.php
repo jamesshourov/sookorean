@@ -13,20 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('learn_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
             $table->text('title_english');
             $table->text('title_japanese')->nullable();
             $table->text('title_french')->nullable();
             $table->text('title_spanish')->nullable();
             $table->text('title_arabic')->nullable();
-            $table->text('description_english')->nullable();
-            $table->text('description_japanese')->nullable();
-            $table->text('description_french')->nullable();
-            $table->text('description_spanish')->nullable();
-            $table->text('description_arabic')->nullable();
-            $table->string('background_color')->nullable();
+            $table->text('thumbnail')->nullable();
+            $table->text('audio')->nullable();
+            $table->text('video_link')->nullable();
+            $table->text('category_id')->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('learn_subcategories');
     }
 };

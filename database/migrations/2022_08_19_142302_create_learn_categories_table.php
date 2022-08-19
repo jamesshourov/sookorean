@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('learn_categories', function (Blueprint $table) {
             $table->id();
             $table->text('image')->nullable();
             $table->text('title_english');
@@ -26,6 +26,11 @@ return new class extends Migration
             $table->text('description_french')->nullable();
             $table->text('description_spanish')->nullable();
             $table->text('description_arabic')->nullable();
+            $table->text('subtitle_english')->nullable();
+            $table->text('subtitle_japanese')->nullable();
+            $table->text('subtitle_french')->nullable();
+            $table->text('subtitle_spanish')->nullable();
+            $table->text('subtitle_arabic')->nullable();
             $table->string('background_color')->nullable();
             $table->timestamps();
         });
@@ -38,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('learn_categories');
     }
 };

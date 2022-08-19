@@ -200,6 +200,38 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-category.all') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'collapsed active' : '' }}"
+                       href="#sidebarLearn" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarLearn">
+                        <i class="ri-contacts-book-line"></i> <span data-key="t-apps">Learn</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'show' : '' }}"
+                         id="sidebarLearn">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('learn-category.all') }}" class="nav-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'active' : '' }}" data-key="t-calendar">
+                                    Manage Category
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('privacy.edit') ? 'active' : '' }}"
+                       href="{{ route('privacy.edit') }}">
+                        <i class="ri-book-open-line"></i> <span data-key="t-dashboards">Privacy Policy</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('terms.edit') ? 'active' : '' }}"
+                       href="{{ route('terms.edit') }}">
+                        <i class="ri-pencil-ruler-2-line"></i> <span data-key="t-dashboards">Terms and Conditions</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

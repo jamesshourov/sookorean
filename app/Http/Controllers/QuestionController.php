@@ -161,12 +161,12 @@ class QuestionController extends Controller
         if ($request->hasFile('audio')) {
             $audio = $request->file('audio')->store('public/question');
             $audio = str_replace('public/', 'storage/', $audio);
-            $data['image'] = $audio;
+            $data['audio'] = $audio;
         }
         if ($request->hasFile('video')) {
             $video = $request->file('video')->store('public/question');
             $video = str_replace('public/', 'storage/', $video);
-            $data['image'] = $video;
+            $data['video'] = $video;
         }
         $updated = DB::table('questions')->where('id', $request->id)->update($data);
         DB::table('options')->where('question_id', $request->id)->delete();

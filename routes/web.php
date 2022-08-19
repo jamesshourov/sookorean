@@ -106,6 +106,32 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/question/update', 'update')->name('question.update');
         Route::get('/question/delete/{id}', 'delete')->name('question.delete');
     });
+
+    Route::controller(\App\Http\Controllers\LearnCategoryController::class)->group(function () {
+        Route::get('/learn-category/add-new', 'addForm')->name('learn-category.add');
+        Route::post('/learn-category/store',  'store')->name('learn-category.store');
+        Route::get('/learn-category/all', 'all')->name('learn-category.all');
+        Route::get('/learn-category/edit/{id}', 'edit')->name('learn-category.edit');
+        Route::post('/learn-category/update', 'update')->name('learn-category.update');
+        Route::get('/learn-category/delete/{id}', 'delete')->name('learn-category.delete');
+    });
+
+    Route::controller(\App\Http\Controllers\LearnSubcategoryController::class)->group(function () {
+        Route::get('/learn-subcategory/{id}/add-new', 'addForm')->name('learn-subcategory.add');
+        Route::post('/learn-subcategory/store',  'store')->name('learn-subcategory.store');
+        Route::get('/learn-subcategory/{id}/all', 'all')->name('learn-subcategory.all');
+        Route::get('/learn-subcategory/edit/{id}', 'edit')->name('learn-subcategory.edit');
+        Route::post('/learn-subcategory/update', 'update')->name('learn-subcategory.update');
+        Route::get('/learn-subcategory/delete/{id}', 'delete')->name('learn-subcategory.delete');
+    });
+
+    Route::controller(\App\Http\Controllers\ContentController::class)->group(function () {
+        Route::get('/privacy', 'privacy')->name('privacy.edit');
+        Route::post('/privacy/update',  'updatePrivacy')->name('privacy.update');
+
+        Route::get('/terms', 'terms')->name('terms.edit');
+        Route::post('/terms/update',  'updateTerms')->name('terms.update');
+    });
 });
 Auth::routes();
 

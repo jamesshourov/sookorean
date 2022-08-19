@@ -9,7 +9,7 @@
     <meta content="SooKorean Admin Login" name="description"/>
     <meta content="SooKorean" name="author"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('') }}assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('') }}assets/images/logo-dark.png">
 
     <!-- Layout config Js -->
     <script src="{{ asset('') }}assets/js/layout.js"></script>
