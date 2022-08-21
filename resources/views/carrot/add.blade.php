@@ -52,7 +52,8 @@
                                     <div class="row gy-4">
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
-                                            <input type="file" accept=".jpeg, .jpg, .png, .gif" class="form-control @error('image') is-invalid @enderror"
+                                            <input type="file" accept=".jpeg, .jpg, .png, .gif"
+                                                   class="form-control @error('image') is-invalid @enderror"
                                                    name="image" required>
                                             @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -112,18 +113,18 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Title</label>--}}
-{{--                                            <input type="text"--}}
-{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
-{{--                                                   name="title_arabic"--}}
-{{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
-{{--                                            @error('title_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Title</label>--}}
+                                        {{--                                            <input type="text"--}}
+                                        {{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+                                        {{--                                                   name="title_arabic"--}}
+                                        {{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
+                                        {{--                                            @error('title_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
 
                                         <div class="col-md-12">
                                             <label class="form-label">English Description</label>
@@ -173,17 +174,17 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Description</label>--}}
-{{--                                            <textarea name="description_arabic"--}}
-{{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
-{{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
-{{--                                            @error('description_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Description</label>--}}
+                                        {{--                                            <textarea name="description_arabic"--}}
+                                        {{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
+                                        {{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
+                                        {{--                                            @error('description_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
 
                                         <div class="col-md-12">
                                             <label class="form-label">Price</label>
