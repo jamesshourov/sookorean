@@ -68,6 +68,7 @@
                                     <thead>
                                     <tr>
                                         <th scope="col" width="5%">SL</th>
+                                        <th scope="col">Image</th>
                                         <th scope="col">Title</th>
                                         <th scope="col" width="15%">Action</th>
                                     </tr>
@@ -84,6 +85,9 @@
                                             <th scope="row">
                                                 {{ $sl }}
                                             </th>
+                                            <td>
+                                                <img style="width: 150px" src="{{ asset($row->image) }}"  alt="Image"/>
+                                            </td>
                                             <td>
                                                 {{ $row->title_english }}
                                             </td>

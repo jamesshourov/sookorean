@@ -132,6 +132,15 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('/terms', 'terms')->name('terms.edit');
         Route::post('/terms/update',  'updateTerms')->name('terms.update');
     });
+
+    Route::controller(\App\Http\Controllers\LearnContentController::class)->group(function () {
+        Route::get('/learn-content/{id}/add-new', 'addForm')->name('learn-content.add');
+        Route::post('/learn-content/store',  'store')->name('learn-content.store');
+        Route::get('/learn-content/{id}/all', 'all')->name('learn-content.all');
+        Route::get('/learn-content/edit/{id}', 'edit')->name('learn-content.edit');
+        Route::post('/learn-content/update', 'update')->name('learn-content.update');
+        Route::get('/learn-content/delete/{id}', 'delete')->name('learn-content.delete');
+    });
 });
 Auth::routes();
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Edit Subcategory
+    Edit Content
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -15,12 +15,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Edit Subcategory</h4>
+                            <h4 class="mb-sm-0">Edit Content</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Subcategories</a></li>
-                                    <li class="breadcrumb-item active">Edit Subcategory</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Contents</a></li>
+                                    <li class="breadcrumb-item active">Edit Content</li>
                                 </ol>
                             </div>
 
@@ -47,7 +47,7 @@
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('learn-subcategory.update') }}" method="post"
+                                <form action="{{ route('learn-content.update') }}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $row->id }}">
@@ -104,18 +104,67 @@
                                             @enderror
                                         </div>
 
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Arabic Title</label>--}}
+{{--                                            <input type="text"--}}
+{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+{{--                                                   name="title_arabic"--}}
+{{--                                                   value="{{ $row->title_arabic }}" dir="rtl">--}}
+{{--                                            @error('title_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
                                         <div class="col-md-12">
-                                            <label class="form-label">Arabic Title</label>
-                                            <input type="text"
-                                                   class="form-control @error('title_arabic') is-invalid @enderror"
-                                                   name="title_arabic"
-                                                   value="{{ $row->title_arabic }}" dir="rtl">
-                                            @error('title_arabic')
+                                            <label class="form-label">English Description</label>
+                                            <textarea name="description_english" class="form-control @error('description_english') is-invalid @enderror" rows="5">{{ $row->description_english }}</textarea>
+                                            @error('description_english')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Japanese Description</label>
+                                            <textarea name="description_japanese" class="form-control @error('description_japanese') is-invalid @enderror" rows="5">{{ $row->description_japanese }}</textarea>
+                                            @error('description_japanese')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">French Description</label>
+                                            <textarea name="description_french" class="form-control @error('description_french') is-invalid @enderror" rows="5">{{ $row->description_french }}</textarea>
+                                            @error('description_french')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Spanish Description</label>
+                                            <textarea name="description_spanish" class="form-control @error('description_spanish') is-invalid @enderror" rows="5">{{ $row->description_spanish }}</textarea>
+                                            @error('description_spanish')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Arabic Description</label>--}}
+{{--                                            <textarea name="description_arabic" class="form-control @error('description_arabic') is-invalid @enderror" rows="5" dir="rtl">{{ $row->description_arabic }}</textarea>--}}
+{{--                                            @error('description_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
                                             <div class="row">
@@ -129,10 +178,31 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                @if(!empty($row->image))
+                                                @if(!empty($row->thumbnail))
                                                     <div class="col-md-4 mb-4">
-                                                        <img class="img-fluid w-75" src="{{ asset($row->image) }}"
+                                                        <img class="img-fluid w-75" src="{{ asset($row->thumbnail) }}"
                                                              alt="Image"/>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Audio</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="file"
+                                                           class="form-control @error('audio') is-invalid @enderror"
+                                                           name="audio">
+                                                    @error('audio')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                                @if(!empty($row->audio))
+                                                    <div class="col-md-4">
+                                                        <audio class="w-75" src="{{ asset($row->audio) }}"
+                                                               controls></audio>
                                                     </div>
                                                 @endif
                                             </div>

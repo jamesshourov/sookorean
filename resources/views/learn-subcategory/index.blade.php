@@ -65,6 +65,7 @@
                                     <thead>
                                     <tr>
                                         <th scope="col" width="5%">SL</th>
+                                        <th scope="col">Image</th>
                                         <th scope="col">Title</th>
                                         <th scope="col" width="15%">Action</th>
                                     </tr>
@@ -78,14 +79,21 @@
                                             $sl++;
                                         @endphp
                                         <tr valign="middle">
-                                            <th scope="row">
+                                            <td scope="row">
                                                 {{ $sl }}
-                                            </th>
+                                            </td>
+                                            <td>
+                                                <img style="width: 150px" src="{{ asset($row->thumbnail) }}"  alt="Image"/>
+                                            </td>
                                             <td>
                                                 {{ $row->title_english }}
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
+                                                    <div class="edit">
+                                                        <a class="btn btn-sm btn-warning edit-item-btn"
+                                                           href="{{ route('learn-content.all', $row->id) }}">Contents</a>
+                                                    </div>
                                                     <div class="edit">
                                                         <a class="btn btn-sm btn-success edit-item-btn"
                                                            href="{{ route('learn-subcategory.edit', $row->id) }}">Edit</a>

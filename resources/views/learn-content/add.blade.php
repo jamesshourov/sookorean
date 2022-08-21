@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Add New Subcategory to {{ $category->title_english }}
+    Add New Content to {{ $category->title_english }}
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -15,11 +15,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Add New Subcategory to {{ $category->title_english }}</h4>
+                            <h4 class="mb-sm-0">Add New Content to {{ $category->title_english }}</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item active">Add New Subcategory to {{ $category->title_english }}</li>
+                                    <li class="breadcrumb-item active">Add New Content to {{ $category->title_english }}</li>
                                 </ol>
                             </div>
 
@@ -42,11 +42,11 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title mb-0">Subcategory Information</h4>
+                                <h4 class="card-title mb-0">Content Information</h4>
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('learn-subcategory.store') }}" method="post"
+                                <form action="{{ route('learn-content.store') }}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="category_id" value="{{ $category_id }}">
@@ -116,11 +116,92 @@
 {{--                                            @enderror--}}
 {{--                                        </div>--}}
                                         <div class="col-md-12">
+                                            <label class="form-label">English Description</label>
+                                            <textarea name="description_english"
+                                                      class="form-control @error('description_english') is-invalid @enderror"
+                                                      rows="5">{{ old('description_english') }}</textarea>
+                                            @error('description_english')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Japanese Description</label>
+                                            <textarea name="description_japanese"
+                                                      class="form-control @error('description_japanese') is-invalid @enderror"
+                                                      rows="5">{{ old('description_japanese') }}</textarea>
+                                            @error('description_japanese')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">French Description</label>
+                                            <textarea name="description_french"
+                                                      class="form-control @error('description_french') is-invalid @enderror"
+                                                      rows="5">{{ old('description_french') }}</textarea>
+                                            @error('description_french')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Spanish Description</label>
+                                            <textarea name="description_spanish"
+                                                      class="form-control @error('description_spanish') is-invalid @enderror"
+                                                      rows="5">{{ old('description_spanish') }}</textarea>
+                                            @error('description_spanish')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Arabic Description</label>--}}
+{{--                                            <textarea name="description_arabic"--}}
+{{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
+{{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
+{{--                                            @error('description_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
+                                        <div class="col-md-12">
                                             <label class="form-label">Thumbnail</label>
                                             <input type="file" accept=".jpeg, .jpg, .png, .gif"
                                                    class="form-control @error('image') is-invalid @enderror"
                                                    name="image">
                                             @error('image')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Audio</label>
+                                            <input type="file"
+                                                   class="form-control @error('audio') is-invalid @enderror"
+                                                   name="audio">
+                                            @error('audio')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Video Link</label>
+                                            <input type="file"
+                                                   class="form-control @error('video_link') is-invalid @enderror"
+                                                   name="video_link">
+                                            @error('video_link')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

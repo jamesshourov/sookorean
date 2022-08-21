@@ -78,7 +78,7 @@ class LearnCategoryController extends Controller
 
     public function edit($id)
     {
-        $row = DB::table('Learn_categories')
+        $row = DB::table('learn_categories')
             ->where('id', $id)
             ->first();
         return view('learn-category.edit', compact('row'));

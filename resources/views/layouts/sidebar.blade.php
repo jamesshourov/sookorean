@@ -201,16 +201,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-category.all') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'collapsed active' : '' }}"
+                    <a class="nav-link menu-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-category.all') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit')  || request()->routeIs('learn-content.add') || request()->routeIs('learn-content.all') || request()->routeIs('learn-content.edit') ? 'collapsed active' : '' }}"
                        href="#sidebarLearn" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarLearn">
                         <i class="ri-contacts-book-line"></i> <span data-key="t-apps">Learn</span>
                     </a>
-                    <div class="collapse menu-dropdown {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'show' : '' }}"
+                    <div class="collapse menu-dropdown {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') || request()->routeIs('learn-content.add') || request()->routeIs('learn-content.all') || request()->routeIs('learn-content.edit') ? 'show' : '' }}"
                          id="sidebarLearn">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('learn-category.all') }}" class="nav-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit') ? 'active' : '' }}" data-key="t-calendar">
+                                <a href="{{ route('learn-category.all') }}" class="nav-link {{ request()->routeIs('learn-category.add') || request()->routeIs('learn-category.all') || request()->routeIs('learn-category.edit') || request()->routeIs('learn-subcategory.add') || request()->routeIs('learn-subcategory.all') || request()->routeIs('learn-subcategory.edit')  || request()->routeIs('learn-content.add') || request()->routeIs('learn-content.all') || request()->routeIs('learn-content.edit') ? 'active' : '' }}" data-key="t-calendar">
                                     Manage Category
                                 </a>
                             </li>
