@@ -173,7 +173,6 @@
                                             </span>
                                             @enderror
                                         </div>
-
                                         {{--                                        <div class="col-md-12">--}}
                                         {{--                                            <label class="form-label">Arabic Description</label>--}}
                                         {{--                                            <textarea name="description_arabic"--}}
