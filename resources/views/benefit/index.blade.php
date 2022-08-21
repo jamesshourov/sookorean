@@ -75,7 +75,8 @@
                                                 {{ $sl }}
                                             </th>
                                             <td>
-                                                <img class="img-thumbnail w-50" src="{{ asset($row->image) }}" alt="Image">
+                                                <img class="img-thumbnail w-50" src="{{ asset($row->image) }}"
+                                                     alt="Image">
                                             </td>
                                             <td>
                                                 {{ $row->title_english }}
@@ -83,10 +84,13 @@
                                             <td>
                                                 <div class="d-flex gap-2">
                                                     <div class="edit">
-                                                        <a class="btn btn-sm btn-success edit-item-btn" href="{{ route('category.edit', $row->id) }}">Edit</a>
+                                                        <a class="btn btn-sm btn-success edit-item-btn"
+                                                           href="{{ route('category.edit', $row->id) }}">Edit</a>
                                                     </div>
                                                     <div class="remove">
-                                                        <a class="btn btn-sm btn-danger remove-item-btn" href="{{ route('category.delete', $row->id) }}" onclick="return confirm('Are you sure?')">Remove</a>
+                                                        <a class="btn btn-sm btn-danger remove-item-btn"
+                                                           href="{{ route('category.delete', $row->id) }}"
+                                                           onclick="return confirm('Are you sure?')">Remove</a>
                                                     </div>
                                                 </div>
                                             </td>
