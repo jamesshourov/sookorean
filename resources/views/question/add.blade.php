@@ -105,18 +105,18 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12">
-                                            <label class="form-label">Arabic Title</label>
-                                            <input type="text"
-                                                   class="form-control @error('title_arabic') is-invalid @enderror"
-                                                   name="title_arabic"
-                                                   value="{{ old('title_arabic') }}" dir="rtl">
-                                            @error('title_arabic')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Arabic Title</label>--}}
+{{--                                            <input type="text"--}}
+{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+{{--                                                   name="title_arabic"--}}
+{{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
+{{--                                            @error('title_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
                                             <input type="file" accept=".jpeg, .jpg, .png, .gif"
