@@ -183,7 +183,7 @@ class ApiController extends Controller
 
     public function updateProfile(Request $request)
     {
-        if ($request->profile_pic_type == 'external' && !empty($request->profile_pic)){
+        if ($request->profile_pic_type == 'external' && !empty($request->profile_pic)) {
             $data = [
                 'profile_pic_type' => $request->profile_pic_type,
                 'profile_pic' => $request->profile_pic,
@@ -192,10 +192,10 @@ class ApiController extends Controller
                 'date_of_birth' => $request->date_of_birth,
                 'korean_level' => $request->korean_level,
             ];
-        }else{
+        } else {
             if ($request->hasFile('profile_pic')) {
                 $fileName = $request->file('profile_pic')->store('public/profile');
-                $fileName = str_replace('public/','storage/',$fileName);
+                $fileName = str_replace('public/', 'storage/', $fileName);
                 $data = [
                     'profile_pic' => $fileName,
                     'profile_pic_type' => 'internal',
@@ -204,7 +204,7 @@ class ApiController extends Controller
                     'date_of_birth' => $request->date_of_birth,
                     'korean_level' => $request->korean_level,
                 ];
-            }else{
+            } else {
                 $data = [
                     'name' => $request->name,
                     'email' => $request->email,
@@ -224,4 +224,215 @@ class ApiController extends Controller
             return response()->json(compact('status', 'message'));
         }
     }
+
+    public function getLearnCategories()
+    {
+        $categories = DB::table('learn_categories')->get();
+        $status = true;
+        return response()->json(compact('status', 'categories'));
+    }
+
+    public function getLearnSubCategories(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'category_id' => 'required',
+            ],
+            [
+                'category_id.required' => 'Category Id is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $categories = DB::table('learn_subcategories')->where('category_id', $request->category_id)->get();
+        $status = true;
+        return response()->json(compact('status', 'categories'));
+    }
+
+    public function getLevels(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'category_id' => 'required',
+            ],
+            [
+                'category_id.required' => 'Category Id is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $levels = DB::table('levels')->where('category_id', $request->category_id)->get();
+        $status = true;
+        return response()->json(compact('status', 'levels'));
+    }
+
+    public function getQuestions(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'level_id' => 'required',
+            ],
+            [
+                'level_id.required' => 'Level Id is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $questionList = DB::table('questions')
+            ->where('level_id', $request->level_id)
+            ->get();
+        $questions = array();
+        foreach ($questionList as $item){
+            $options = DB::table('options')->where('question_id', $item->id)->get();
+            $item->options = $options;
+            $questions[] = $item;
+        }
+        $status = true;
+        return response()->json(compact('status', 'questions'));
+    }
+
+    public function getGifs()
+    {
+        $gifs = DB::table('gifs')->get();
+        $status = true;
+        return response()->json(compact('status', 'gifs'));
+    }
+
+    public function updateCarrotPoint(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'point' => 'required',
+            ],
+            [
+                'point.required' => 'Point is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        DB::table('users')->where('id', $this->guard()->user()->id)->increment('carrot_points', $request->point);
+        $totalPoint = DB::table('users')->where('id', $this->guard()->user()->id)->first()->carrot_points;
+        $status = true;
+        $message = 'Successfully updated';
+        return response()->json(compact('status', 'message', 'totalPoint'));
+    }
+
+    public function buyCarrot(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'carrot_id' => 'required',
+            ],
+            [
+                'carrot_id.required' => 'Carrot Id is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $carrot = DB::table('carrots')->where('id', $request->carrot_id)->first();
+        if ($carrot){
+            $previousCarrot = DB::table('user_carrots')->where('user_id', $this->guard()->user()->id)->where('carrot_id', $request->carrot_id)->first();
+            if (empty($previousCarrot)){
+                $data = array(
+                    'user_id' => $this->guard()->user()->id,
+                    'carrot_id' => $request->carrot_id
+                );
+                $saved = DB::table('user_carrots')->insert($data);
+                if ($saved) {
+                    $status = true;
+                    $message = 'Successfully purchased';
+                    return response()->json(compact('status', 'message'));
+                }else{
+                    $status = false;
+                    $message = 'Something went wrong';
+                    return response()->json(compact('status', 'message'));
+                }
+            }else{
+                $status = false;
+                $message = 'Already purchased';
+                return response()->json(compact('status', 'message'));
+            }
+        }else{
+            $status = false;
+            $message = 'Carrot does not exist';
+            return response()->json(compact('status', 'message'));
+        }
+
+    }
+    public function getUserCarrots()
+    {
+        $previousCarrot = DB::table('user_carrots')->where('user_id', $this->guard()->user()->id)->get();
+        $userCarrots = array();
+        foreach ($previousCarrot as $userCarrot){
+            array_push($userCarrots, $userCarrot->carrot_id);
+        }
+        $carrots = DB::table('carrots')->where('price' , 0)->orWhereIn('id', $userCarrots)->get();
+        $status = true;
+        return response()->json(compact('status', 'carrots'));
+    }
+
+    public function createRoom(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'title' => 'required',
+                'members' => 'required',
+            ],
+            [
+                'title.required' => 'Title is required',
+                'members.required' => 'Title is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $data = array(
+            'creator_id' => $this->guard()->user()->id,
+            'members' => $request->members
+        );
+        $saved = DB::table('rooms')->insert($data);
+        if ($saved){
+            $status = true;
+            $message = 'Successfully created';
+            return response()->json(compact('status', 'message'));
+        }else{
+            $status = false;
+            $message = 'Something went wrong';
+            return response()->json(compact('status', 'message'));
+        }
+    }
+
+    public function getRooms(){
+        $roomList = DB::table('rooms')->get();
+        $rooms = array();
+        foreach ($roomList as $item){
+            $userData = DB::table('users')->where('id', $item->creator_id)->first();
+            $item->userDetails = $userData;
+            $rooms[] = $item;
+        }
+        $status = true;
+        return response()->json(compact('status', 'rooms'));
+    }
+
+    public function upgradeMembership(Request $request){
+
+    }
+
 }
