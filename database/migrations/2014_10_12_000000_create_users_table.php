@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('device_token')->nullable();
             $table->tinyInteger('premium')->nullable();
             $table->string('email')->unique();
+            $table->string('expire_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('user');

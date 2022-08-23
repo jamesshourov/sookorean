@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Video Link</label>
-                                            <input type="file"
+                                            <input type="text"
                                                    class="form-control @error('video_link') is-invalid @enderror"
                                                    name="video_link">
                                             @error('video_link')

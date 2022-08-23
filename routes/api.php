@@ -23,5 +23,18 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::get('/profile',  'profile');
         Route::get('/carrots',  'getCarrots');
         Route::get('/categories',  'getCategories');
+        Route::get('/learn-categories',  'getLearnCategories');
+        Route::post('/learn-subcategories',  'getLearnSubCategories');
+        Route::post('/levels',  'getLevels');
+        Route::post('/levels',  'getLevels');
+        Route::post('/questions',  'getQuestions');
+        Route::get('/gifs',  'getGifs');
+        Route::post('/update-carrot-point',  'updateCarrotPoint');
+        Route::post('/buy-carrot',  'buyCarrot');
+        Route::get('/get-user-carrots',  'getUserCarrots');
+        Route::post('/create-room',  'createRoom');
+        Route::get('/rooms',  'getRooms');
+        Route::post('/upgrade-membership',  'upgradeMembership');
+        Route::get('/unsubscribe',  'upgradeMembership');
     });
 });

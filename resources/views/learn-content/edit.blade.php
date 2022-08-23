@@ -207,6 +207,18 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Video link</label>
+                                            <input type="text"
+                                                   class="form-control @error('video_link') is-invalid @enderror"
+                                                   name="video_link"
+                                                   value="{{ $row->video_link }}">
+                                            @error('video_link')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Update</button>
                                         </div>

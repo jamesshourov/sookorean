@@ -30,6 +30,7 @@ class User extends Authenticatable implements JWTSubject
         'social_id',
         'device_type',
         'premium',
+        'expiry_date',
         'role',
         'status'
     ];

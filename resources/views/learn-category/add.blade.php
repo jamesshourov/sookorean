@@ -233,17 +233,17 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12">
-                                            <label class="form-label">Arabic Description</label>
-                                            <textarea name="description_arabic"
-                                                      class="form-control @error('description_arabic') is-invalid @enderror"
-                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>
-                                            @error('description_arabic')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Arabic Description</label>--}}
+{{--                                            <textarea name="description_arabic"--}}
+{{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
+{{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
+{{--                                            @error('description_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
 
                                         <div class="col-md-12">
                                             <label class="form-label">Background Color</label>

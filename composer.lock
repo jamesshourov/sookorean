@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dc652bacc5de2854c0ddbbf8cd98c80",
+    "content-hash": "f4947656ea551c78a82536fe2d0243b1",
     "packages": [
         {
             "name": "brick/math",
@@ -434,6 +434,68 @@
             "time": "2022-06-18T20:57:19+00:00"
         },
         {
+            "name": "firebase/php-jwt",
+            "version": "v6.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "018dfc4e1da92ad8a1b90adc4893f476a3b41cb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/018dfc4e1da92ad8a1b90adc4893f476a3b41cb8",
+                "reference": "018dfc4e1da92ad8a1b90adc4893f476a3b41cb8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1||^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.5||^7.4",
+                "phpspec/prophecy-phpunit": "^1.1",
+                "phpunit/phpunit": "^7.5||^9.5",
+                "psr/cache": "^1.0||^2.0",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0"
+            },
+            "suggest": {
+                "paragonie/sodium_compat": "Support EdDSA (Ed25519) signatures when libsodium is not present"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "keywords": [
+                "jwt",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/firebase/php-jwt/issues",
+                "source": "https://github.com/firebase/php-jwt/tree/v6.3.0"
+            },
+            "time": "2022-07-15T16:48:45+00:00"
+        },
+        {
             "name": "fruitcake/php-cors",
             "version": "v1.2.0",
             "source": {
@@ -503,6 +565,64 @@
                 }
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "google/auth",
+            "version": "v1.21.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/googleapis/google-auth-library-php.git",
+                "reference": "aa3b9ca29258ac6347ce3c8937a2418c5d78f840"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/aa3b9ca29258ac6347ce3c8937a2418c5d78f840",
+                "reference": "aa3b9ca29258ac6347ce3c8937a2418c5d78f840",
+                "shasum": ""
+            },
+            "require": {
+                "firebase/php-jwt": "^5.5||^6.0",
+                "guzzlehttp/guzzle": "^6.2.1|^7.0",
+                "guzzlehttp/psr7": "^1.7|^2.0",
+                "php": "^7.1||^8.0",
+                "psr/cache": "^1.0|^2.0|^3.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/promises": "0.1.1|^1.3",
+                "kelvinmo/simplejwt": "^0.2.5|^0.5.1",
+                "phpseclib/phpseclib": "^2.0.31",
+                "phpspec/prophecy-phpunit": "^1.1",
+                "phpunit/phpunit": "^7.5||^8.5",
+                "sebastian/comparator": ">=1.2.3",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "suggest": {
+                "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings or for token management. Please require version ^2."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Google\\Auth\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Google Auth Library for PHP",
+            "homepage": "http://github.com/google/google-auth-library-php",
+            "keywords": [
+                "Authentication",
+                "google",
+                "oauth2"
+            ],
+            "support": {
+                "docs": "https://googleapis.github.io/google-auth-library-php/main/",
+                "issues": "https://github.com/googleapis/google-auth-library-php/issues",
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.21.1"
+            },
+            "time": "2022-05-16T19:34:15+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -888,6 +1008,174 @@
                 }
             ],
             "time": "2022-06-20T21:43:11+00:00"
+        },
+        {
+            "name": "imdhemy/appstore-iap",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdhemy/appstore-iap.git",
+                "reference": "8c1c7eff78b654c2e0f5d12de63974e6424254fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imdhemy/appstore-iap/zipball/8c1c7eff78b654c2e0f5d12de63974e6424254fe",
+                "reference": "8c1c7eff78b654c2e0f5d12de63974e6424254fe",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.3",
+                "nesbot/carbon": "^2.51"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.15",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^5.3",
+                "vimeo/psalm": "^4.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Imdhemy\\AppStore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "imdhemy",
+                    "email": "imdhemy@gmail.com"
+                }
+            ],
+            "description": "PHP Appstore In-App Purchase implementation",
+            "support": {
+                "issues": "https://github.com/imdhemy/appstore-iap/issues",
+                "source": "https://github.com/imdhemy/appstore-iap/tree/1.0.0"
+            },
+            "time": "2021-11-05T08:49:42+00:00"
+        },
+        {
+            "name": "imdhemy/google-play-billing",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdhemy/google-play-billing.git",
+                "reference": "c7dc4c5eb0d62dd7279dd865c1ce38c818325d0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imdhemy/google-play-billing/zipball/c7dc4c5eb0d62dd7279dd865c1ce38c818325d0c",
+                "reference": "c7dc4c5eb0d62dd7279dd865c1ce38c818325d0c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "google/auth": "^1.15",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "nesbot/carbon": "^2.41",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.16",
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^5.3",
+                "vimeo/psalm": "^4.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Imdhemy\\GooglePlay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "imdhemy",
+                    "email": "imdhemy@gmail.com"
+                }
+            ],
+            "description": "Google Play Billing",
+            "support": {
+                "issues": "https://github.com/imdhemy/google-play-billing/issues",
+                "source": "https://github.com/imdhemy/google-play-billing/tree/1.0.1"
+            },
+            "time": "2022-03-19T17:19:52+00:00"
+        },
+        {
+            "name": "imdhemy/laravel-purchases",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdhemy/laravel-in-app-purchases.git",
+                "reference": "9669f3e7c79555c05ebcfbc481eabe7a00142ffa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imdhemy/laravel-in-app-purchases/zipball/9669f3e7c79555c05ebcfbc481eabe7a00142ffa",
+                "reference": "9669f3e7c79555c05ebcfbc481eabe7a00142ffa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "imdhemy/appstore-iap": "^1.0",
+                "imdhemy/google-play-billing": "^1.0",
+                "laravel/framework": ">=6.20",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4",
+                "orchestra/testbench": "^6.24",
+                "psalm/plugin-laravel": "^1.5",
+                "vimeo/psalm": "^4.22"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Imdhemy\\Purchases\\ServiceProviders\\LiapServiceProvider"
+                    ],
+                    "aliases": {
+                        "Product": "\\Imdhemy\\Purchases\\Facades\\Product",
+                        "Subscription": "\\Imdhemy\\Purchases\\Facades\\Subscription"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Imdhemy\\Purchases\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "imdhemy",
+                    "email": "imdhemy@gmail.com"
+                }
+            ],
+            "description": "Laravel receipt validator for Google Play",
+            "homepage": "https://imdhemy.com/laravel-iap-docs",
+            "keywords": [
+                "google_play",
+                "in_app_purchases",
+                "laravel",
+                "laravel-in-app-purchases"
+            ],
+            "support": {
+                "issues": "https://github.com/imdhemy/laravel-in-app-purchases/issues",
+                "source": "https://github.com/imdhemy/laravel-in-app-purchases/tree/1.0.0"
+            },
+            "time": "2022-08-15T11:05:32+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2491,6 +2779,55 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "psr/cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
+            },
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/container",

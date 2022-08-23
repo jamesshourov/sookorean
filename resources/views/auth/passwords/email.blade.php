@@ -32,18 +32,10 @@
     <!-- auth-page content -->
     <div class="auth-page-content overflow-hidden pt-lg-5">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
                     <div class="card overflow-hidden">
                         <div class="row justify-content-center g-0">
-                            <div class="col-lg-6">
-                                <div class="p-lg-5 p-4 auth-one-bg h-100">
-                                    <div class="bg-overlay"></div>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-lg-6">
                                 <div class="p-lg-5 p-4">
                                     @if (session('status'))
                                         <div class="alert alert-success" role="alert">
@@ -98,7 +90,6 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
                             <!-- end col -->
                         </div>
                         <!-- end row -->
