@@ -13,7 +13,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.api:api', ['except' => ['login', 'signup']]);
+        $this->middleware('auth.api:api', ['except' => ['login', 'signup', 'getCarrots']]);
     }
 
     protected function guard()
