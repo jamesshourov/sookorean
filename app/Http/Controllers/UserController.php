@@ -185,7 +185,7 @@ class UserController extends Controller
         $title = 'Premium Users';
         return view('user.index', compact('users','title'));
     }
-    public function exportUsers(Request $request){
+    public function exportUsers(){
         return Excel::download(new ExportUser, 'users.xlsx');
     }
 }

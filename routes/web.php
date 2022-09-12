@@ -44,6 +44,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('/user/free', 'free')->name('user.free');
         Route::get('/user/premium', 'premium')->name('user.premium');
         Route::get('/user/delete/{id}', 'delete')->name('user.delete');
+        Route::get('/user/export', 'exportUsers')->name('user.export');
     });
 
     Route::controller(CarrotController::class)->group(function () {
