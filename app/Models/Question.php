@@ -9,6 +9,7 @@ class Question extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'title',
         'title_english',
         'title_japanese',
         'title_french',

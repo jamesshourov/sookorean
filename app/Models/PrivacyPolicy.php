@@ -8,5 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PrivacyPolicy extends Model
 {
     use HasFactory;
-    protected $fillable = ['content'];
+
+    protected $fillable = [
+        'content_english',
+        'content_japanese',
+        'content_french',
+        'content_spanish',
+        'content_arabic',
+    ];
 }

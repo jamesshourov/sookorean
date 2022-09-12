@@ -12,7 +12,8 @@ class QuestionController extends Controller
     {
         $level_id = $id;
         $level = DB::table('levels')->where('id', $level_id)->first();
-        return view('question.add', compact('level_id', 'level'));
+        $category = DB::table('categories')->where('id', $level->category_id)->first();
+        return view('question.add', compact('level_id', 'level', 'category'));
     }
 
     public function store(Request $request)
@@ -21,13 +22,13 @@ class QuestionController extends Controller
             [
                 'title_english' => 'required',
                 'answer' => 'required',
-                'options' => 'required',
+                'options_english' => 'required',
                 'level_id' => 'required',
             ],
             [
                 'title_english.required' => 'English title is required',
                 'answer.required' => 'Answer is required',
-                'options.required' => 'Options are required',
+                'options_english.required' => 'Options are required',
                 'level_id.required' => 'No level selected',
             ]
         );
@@ -53,6 +54,7 @@ class QuestionController extends Controller
             'image' => $request->hasFile('image') ? $image : null,
             'audio' => $request->hasFile('audio') ? $audio : null,
             'video' => $request->hasFile('video') ? $video : null,
+            'title' => $request->title,
             'title_english' => $request->title_english,
             'title_japanese' => $request->title_japanese,
             'title_french' => $request->title_french,
@@ -62,16 +64,25 @@ class QuestionController extends Controller
             'level_id' => $request->level_id,
         ];
         $id = DB::table('questions')->insertGetId($data);
-        $options = $request->options;
+        $options = $request->options_english;
+        $options_japanese = $request->options_japanese;
+        $options_french = $request->options_french;
+        $options_spanish = $request->options_spanish;
         $optionValues = $request->option_values;
         if (count($options) > 0) {
             for ($i = 0, $n = count($options); $i < $n; $i++) {
                 $option = $options[$i];
+                $option_japanese = $options_japanese[$i];
+                $option_french = $options_french[$i];
+                $option_spanish = $options_spanish[$i];
                 $optionValue = $optionValues[$i];
                 if (!empty($option) && !empty($optionValue)) {
                     DB::table('options')->insert([
                         'question_id' => $id,
-                        'option_title' => $option,
+                        'option_title_english' => $option,
+                        'option_title_japanese' => $option_japanese,
+                        'option_title_french' => $option_french,
+                        'option_title_spanish' => $option_spanish,
                         'option_value' => $optionValue,
                     ]);
                 }
@@ -112,7 +123,9 @@ class QuestionController extends Controller
         $options = DB::table('options')
             ->where('question_id', $id)
             ->get();
-        return view('question.edit', compact('row', 'options'));
+        $level = DB::table('levels')->where('id', $row->level_id)->first();
+        $category = DB::table('categories')->where('id', $level->category_id)->first();
+        return view('question.edit', compact('row', 'options', 'category'));
     }
 
     public function delete($id)
@@ -130,13 +143,13 @@ class QuestionController extends Controller
             [
                 'title_english' => 'required',
                 'answer' => 'required',
-                'options' => 'required',
+                'options_english' => 'required',
                 'id' => 'required',
             ],
             [
                 'title_english.required' => 'English title is required',
                 'answer.required' => 'Answer is required',
-                'options.required' => 'Options are required',
+                'options_english.required' => 'Options are required',
                 'id.required' => 'Question id is required',
             ]
         );
@@ -147,6 +160,7 @@ class QuestionController extends Controller
                 ->withInput();
         }
         $data = array();
+        $data['title'] = $request->title;
         $data['title_english'] = $request->title_english;
         $data['title_japanese'] = $request->title_japanese;
         $data['title_french'] = $request->title_french;
@@ -170,16 +184,25 @@ class QuestionController extends Controller
         }
         $updated = DB::table('questions')->where('id', $request->id)->update($data);
         DB::table('options')->where('question_id', $request->id)->delete();
-        $options = $request->options;
+        $options = $request->options_english;
         $optionValues = $request->option_values;
+        $options_japanese = $request->options_japanese;
+        $options_french = $request->options_french;
+        $options_spanish = $request->options_spanish;
         if (count($options) > 0) {
             for ($i = 0, $n = count($options); $i < $n; $i++) {
                 $option = $options[$i];
+                $option_japanese = $options_japanese[$i];
+                $option_french = $options_french[$i];
+                $option_spanish = $options_spanish[$i];
                 $optionValue = $optionValues[$i];
                 if (!empty($option) && !empty($optionValue)) {
                     DB::table('options')->insert([
                         'question_id' => $request->id,
-                        'option_title' => $option,
+                        'option_title_english' => $option,
+                        'option_title_japanese' => $option_japanese,
+                        'option_title_french' => $option_french,
+                        'option_title_spanish' => $option_spanish,
                         'option_value' => $optionValue,
                     ]);
                 }

@@ -53,6 +53,9 @@ class CategoryController extends Controller
             'description_spanish' => $request->description_spanish,
             'description_arabic' => $request->description_arabic,
             'background_color' => $request->background_color,
+            'multi_langual' => $request->multi_langual,
+            'has_video' => $request->has_video,
+            'play_audio_before' => $request->play_audio_before,
         ];
         $saved = DB::table('categories')->insert($data);
         if ($saved) {
@@ -128,6 +131,9 @@ class CategoryController extends Controller
                 'description_spanish' => $request->description_spanish,
                 'description_arabic' => $request->description_arabic,
                 'background_color' => $request->background_color,
+                'multi_langual' => $request->multi_langual,
+                'has_video' => $request->has_video,
+                'play_audio_before' => $request->play_audio_before,
             ];
         }else{
             $data = [
@@ -142,6 +148,9 @@ class CategoryController extends Controller
                 'description_spanish' => $request->description_spanish,
                 'description_arabic' => $request->description_arabic,
                 'background_color' => $request->background_color,
+                'multi_langual' => $request->multi_langual,
+                'has_video' => $request->has_video,
+                'play_audio_before' => $request->play_audio_before,
             ];
         }
         $saved = DB::table('categories')->where('id', $request->id)->update($data);

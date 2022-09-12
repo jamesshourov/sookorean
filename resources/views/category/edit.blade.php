@@ -186,6 +186,50 @@
                                             @enderror
                                         </div>
 
+                                        <div class="col-md-12">
+                                            <label class="form-label">Option Multilingual</label>
+                                            <select name="multi_langual" class="form-control @error('multi_langual') is-invalid @enderror">
+                                                <option value="">Select option multilingual</option>
+                                                <option value="1" @selected($row->multi_langual == 1)>Yes</option>
+                                                <option value="0" @selected($row->multi_langual == 0)>No</option>
+                                            </select>
+                                            @error('multi_langual')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Has Video</label>
+                                            <select name="has_video"
+                                                    class="form-control @error('has_video') is-invalid @enderror">
+                                                <option value="">Select option</option>
+                                                <option value="1" @selected($row->has_video == 1)>Yes</option>
+                                                <option value="0" @selected($row->has_video == 1)>No</option>
+                                            </select>
+                                            @error('has_video')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Play Audio Before</label>
+                                            <select name="play_audio_before"
+                                                    class="form-control @error('play_audio_before') is-invalid @enderror">
+                                                <option value="">Select option</option>
+                                                <option value="1" @selected($row->play_audio_before == 1)>Yes</option>
+                                                <option value="0" @selected($row->play_audio_before == 1)>No</option>
+                                            </select>
+                                            @error('play_audio_before')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Update</button>
                                         </div>

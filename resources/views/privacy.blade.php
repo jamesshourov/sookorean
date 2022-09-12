@@ -50,16 +50,64 @@
                                     @csrf
                                     <div class="row gy-4">
                                         <div class="col-md-12">
-                                            <label class="form-label">Content</label>
-                                            <textarea name="data"
-                                                      class="form-control @error('data') is-invalid @enderror"
-                                                      rows="20">{{ $content ? $content->content : '' }}</textarea>
-                                            @error('data')
+                                            <label class="form-label">Content English</label>
+                                            <textarea name="content_english"
+                                                      class="form-control @error('content_english') is-invalid @enderror"
+                                                      rows="20">{{ $content ? $content->content_english : '' }}</textarea>
+                                            @error('content_english')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Content Japanese</label>
+                                            <textarea name="content_japanese"
+                                                      class="form-control @error('content_japanese') is-invalid @enderror"
+                                                      rows="20">{{ $content ? $content->content_japanese : '' }}</textarea>
+                                            @error('content_japanese')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Content French</label>
+                                            <textarea name="content_french"
+                                                      class="form-control @error('content_french') is-invalid @enderror"
+                                                      rows="20">{{ $content ? $content->content_french : '' }}</textarea>
+                                            @error('content_french')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Content Spanish</label>
+                                            <textarea name="content_spanish"
+                                                      class="form-control @error('content_spanish') is-invalid @enderror"
+                                                      rows="20">{{ $content ? $content->content_spanish : '' }}</textarea>
+                                            @error('content_spanish')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <label class="form-label">Content Arabic</label>--}}
+{{--                                            <textarea name="content_arabic"--}}
+{{--                                                      class="form-control @error('content_arabic') is-invalid @enderror"--}}
+{{--                                                      rows="20">{{ $content ? $content->content_arabic : '' }}</textarea>--}}
+{{--                                            @error('content_arabic')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
 
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Update</button>

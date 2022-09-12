@@ -20,6 +20,9 @@ class Category extends Model
         'description_french',
         'description_spanish',
         'description_arabic',
-        'background_color'
+        'background_color',
+        'multi_langual',
+        'has_video',
+        'play_audio_before'
     ];
 }

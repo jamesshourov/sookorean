@@ -35,6 +35,7 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::post('/create-room',  'createRoom');
         Route::get('/rooms',  'getRooms');
         Route::post('/upgrade-membership',  'upgradeMembership');
+        Route::post('/reset-password',  'resetPassword');
         Route::get('/unsubscribe',  'upgradeMembership');
     });
 });

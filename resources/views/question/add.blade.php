@@ -53,6 +53,20 @@
                                     @csrf
                                     <input type="hidden" name="level_id" value="{{ $level_id }}">
                                     <div class="row gy-4">
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Title</label>
+                                            <input type="text"
+                                                   class="form-control @error('title') is-invalid @enderror"
+                                                   name="title"
+                                                   value="{{ old('title') }}" required>
+                                            @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-md-12">
                                             <label class="form-label">English Title</label>
                                             <input type="text"
@@ -105,18 +119,18 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Title</label>--}}
-{{--                                            <input type="text"--}}
-{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
-{{--                                                   name="title_arabic"--}}
-{{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
-{{--                                            @error('title_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Title</label>--}}
+                                        {{--                                            <input type="text"--}}
+                                        {{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+                                        {{--                                                   name="title_arabic"--}}
+                                        {{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
+                                        {{--                                            @error('title_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
                                             <input type="file" accept=".jpeg, .jpg, .png, .gif"
@@ -139,79 +153,164 @@
                                             </span>
                                             @enderror
                                         </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Video</label>
-                                            <input type="file" class="form-control @error('video') is-invalid @enderror"
-                                                   name="video">
-                                            @error('video')
-                                            <span class="invalid-feedback" role="alert">
+                                        @if($category->has_video == 1)
+                                            <div class="col-md-12">
+                                                <label class="form-label">Video</label>
+                                                <input type="file"
+                                                       class="form-control @error('video') is-invalid @enderror"
+                                                       name="video">
+                                                @error('video')
+                                                <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-12">
-                                            <table class="table table-bordered option-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>
-                                                        Option
-                                                    </th>
-                                                    <th>
-                                                        Value
-                                                    </th>
-                                                    <th>
-                                                        Action
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="option-1">
-                                                    <td>
-                                                        <input type="text"
-                                                               class="form-control option_label option_label_1"
-                                                               name="options[]" required>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text"
-                                                               class="form-control option_value option_value_1"
-                                                               name="option_values[]" required>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-danger remove-button remove-button-1"
-                                                                type="button" onclick="removeOption(1)">
-                                                            <i class="ri-delete-bin-3-line"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <td colspan="3" class="text-center">
-                                                        <button class="btn btn-success" type="button"
-                                                                onclick="addOption()">Add New
+                                                @enderror
+                                            </div>
+                                        @endif
+                                        @if($category->multi_langual == 0)
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered option-table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>
                                                             Option
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-end">
-                                                        <strong>Answer</strong>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text"
-                                                               class="form-control @error('audio') is-invalid @enderror"
-                                                               name="answer" required>
-                                                        @error('audio')
-                                                        <span class="invalid-feedback" role="alert">
+                                                        </th>
+                                                        <th>
+                                                            Value
+                                                        </th>
+                                                        <th>
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="option-1">
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_label option_label_1"
+                                                                   name="options_english[]" required>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_value option_value_1"
+                                                                   name="option_values[]" required>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-danger remove-button remove-button-1"
+                                                                    type="button" onclick="removeOption(1)">
+                                                                <i class="ri-delete-bin-3-line"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <button class="btn btn-success" type="button"
+                                                                    onclick="addOption()">Add New
+                                                                Option
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-end">
+                                                            <strong>Answer</strong>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control @error('audio') is-invalid @enderror"
+                                                                   name="answer" required>
+                                                            @error('audio')
+                                                            <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
-                                                        @enderror
-                                                    </td>
-                                                </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
+                                                            @enderror
+                                                        </td>
+                                                    </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        @else
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered option-table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Option English</th>
+                                                        <th>Option Japanese</th>
+                                                        <th>Option French</th>
+                                                        <th>Option Spanish</th>
+                                                        {{--                                                        <th>Option Arabic</th>--}}
+                                                        <th>
+                                                            Value
+                                                        </th>
+                                                        <th>
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="option-1">
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_label option_label_1"
+                                                                   name="options_english[]" required>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_label option_label_1"
+                                                                   name="options_japanese[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_label option_label_1"
+                                                                   name="options_french[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_label option_label_1"
+                                                                   name="options_spanish[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control option_value option_value_1"
+                                                                   name="option_values[]" required>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-danger remove-button remove-button-1"
+                                                                    type="button" onclick="removeOption(1)">
+                                                                <i class="ri-delete-bin-3-line"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                    <tr>
+                                                        <td colspan="@if($category->multi_langual == 0) 3 @else 6 @endif"
+                                                            class="text-end">
+                                                            <button class="btn btn-success" type="button"
+                                                                    onclick="addOption()">Add New
+                                                                Option
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-end">
+                                                            <strong>Answer</strong>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"
+                                                                   class="form-control @error('answer') is-invalid @enderror"
+                                                                   name="answer" required>
+                                                            @error('answer')
+                                                            <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                            @enderror
+                                                        </td>
+                                                    </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        @endif
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Save</button>
                                         </div>
@@ -243,23 +342,50 @@
         $(document).ready(function () {
             $('.category').select2();
         });
-
+        @if($category->multi_langual == 0)
         function addOption() {
             let count = $('.option-table tbody tr').length;
             $('.option-table tbody').append(`
-                <tr class="option-${count + 1}">
-                    <td>
-                        <input type="text" class="form-control option_label option_label_${count + 1}" name="options[]" required>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
-                    </td>
-                </tr>
-            `);
+                    <tr class="option-${count + 1}">
+                        <td>
+                            <input type="text" class="form-control option_label option_label_${count + 1}" name="options[]" required>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
+                        </td>
+                    </tr>
+                `);
         }
+        @else
+        function addOption() {
+            let count = $('.option-table tbody tr').length;
+            $('.option-table tbody').append(`
+                        <tr class="option-${count + 1}">
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_english[]" required>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_japanese[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_french[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_spanish[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
+                            </td>
+                        </tr>
+                    `);
+        }
+        @endif
 
         function removeOption(id) {
             $('.option-table tbody tr.option-' + id).remove();

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
@@ -291,7 +293,7 @@ class ApiController extends Controller
             ->where('level_id', $request->level_id)
             ->get();
         $questions = array();
-        foreach ($questionList as $item){
+        foreach ($questionList as $item) {
             $options = DB::table('options')->where('question_id', $item->id)->get();
             $item->options = $options;
             $questions[] = $item;
@@ -345,9 +347,9 @@ class ApiController extends Controller
             return response()->json(compact('status', 'errors'));
         }
         $carrot = DB::table('carrots')->where('id', $request->carrot_id)->first();
-        if ($carrot){
+        if ($carrot) {
             $previousCarrot = DB::table('user_carrots')->where('user_id', $this->guard()->user()->id)->where('carrot_id', $request->carrot_id)->first();
-            if (empty($previousCarrot)){
+            if (empty($previousCarrot)) {
                 $data = array(
                     'user_id' => $this->guard()->user()->id,
                     'carrot_id' => $request->carrot_id
@@ -357,31 +359,32 @@ class ApiController extends Controller
                     $status = true;
                     $message = 'Successfully purchased';
                     return response()->json(compact('status', 'message'));
-                }else{
+                } else {
                     $status = false;
                     $message = 'Something went wrong';
                     return response()->json(compact('status', 'message'));
                 }
-            }else{
+            } else {
                 $status = false;
                 $message = 'Already purchased';
                 return response()->json(compact('status', 'message'));
             }
-        }else{
+        } else {
             $status = false;
             $message = 'Carrot does not exist';
             return response()->json(compact('status', 'message'));
         }
 
     }
+
     public function getUserCarrots()
     {
         $previousCarrot = DB::table('user_carrots')->where('user_id', $this->guard()->user()->id)->get();
         $userCarrots = array();
-        foreach ($previousCarrot as $userCarrot){
+        foreach ($previousCarrot as $userCarrot) {
             array_push($userCarrots, $userCarrot->carrot_id);
         }
-        $carrots = DB::table('carrots')->where('price' , 0)->orWhereIn('id', $userCarrots)->get();
+        $carrots = DB::table('carrots')->where('price', 0)->orWhereIn('id', $userCarrots)->get();
         $status = true;
         return response()->json(compact('status', 'carrots'));
     }
@@ -408,21 +411,22 @@ class ApiController extends Controller
             'members' => $request->members
         );
         $saved = DB::table('rooms')->insert($data);
-        if ($saved){
+        if ($saved) {
             $status = true;
             $message = 'Successfully created';
             return response()->json(compact('status', 'message'));
-        }else{
+        } else {
             $status = false;
             $message = 'Something went wrong';
             return response()->json(compact('status', 'message'));
         }
     }
 
-    public function getRooms(){
+    public function getRooms()
+    {
         $roomList = DB::table('rooms')->get();
         $rooms = array();
-        foreach ($roomList as $item){
+        foreach ($roomList as $item) {
             $userData = DB::table('users')->where('id', $item->creator_id)->first();
             $item->userDetails = $userData;
             $rooms[] = $item;
@@ -431,8 +435,50 @@ class ApiController extends Controller
         return response()->json(compact('status', 'rooms'));
     }
 
-    public function upgradeMembership(Request $request){
+    public function upgradeMembership(Request $request)
+    {
 
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'email' => 'required',
+            ],
+            [
+                'email.required' => 'Email is required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $user = DB::table('users')->where('email', $request->email)->first();
+        if ($user) {
+            $credentials = ['email' => $user->email];
+            $response = Password::sendResetLink($credentials, function (Message $message) {
+                $message->subject($this->getEmailSubject());
+            });
+
+            switch ($response) {
+                case Password::RESET_LINK_SENT:
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Password reset link send into mail.',
+                        'data' => '']);
+                case Password::INVALID_USER:
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Unable to send password reset link.'
+                    ]);
+            }
+        } else {
+            $status = false;
+            $message = 'No user found with this email';
+            return response()->json(compact('status', 'message'));
+        }
     }
 
 }

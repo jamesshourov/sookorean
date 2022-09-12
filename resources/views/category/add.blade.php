@@ -47,12 +47,14 @@
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
-                                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('category.store') }}" method="post"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="row gy-4">
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
-                                            <input type="file" accept=".jpeg, .jpg, .png, .gif" class="form-control @error('image') is-invalid @enderror"
+                                            <input type="file" accept=".jpeg, .jpg, .png, .gif"
+                                                   class="form-control @error('image') is-invalid @enderror"
                                                    name="image" required>
                                             @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -112,18 +114,18 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Title</label>--}}
-{{--                                            <input type="text"--}}
-{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
-{{--                                                   name="title_arabic"--}}
-{{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
-{{--                                            @error('title_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Title</label>--}}
+                                        {{--                                            <input type="text"--}}
+                                        {{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+                                        {{--                                                   name="title_arabic"--}}
+                                        {{--                                                   value="{{ old('title_arabic') }}" dir="rtl">--}}
+                                        {{--                                            @error('title_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
 
                                         <div class="col-md-12">
                                             <label class="form-label">English Subtitle</label>
@@ -173,17 +175,17 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Subtitle</label>--}}
-{{--                                            <textarea name="description_arabic"--}}
-{{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
-{{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
-{{--                                            @error('description_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Subtitle</label>--}}
+                                        {{--                                            <textarea name="description_arabic"--}}
+                                        {{--                                                      class="form-control @error('description_arabic') is-invalid @enderror"--}}
+                                        {{--                                                      rows="5" dir="rtl">{{ old('description_arabic') }}</textarea>--}}
+                                        {{--                                            @error('description_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
 
                                         <div class="col-md-12">
                                             <label class="form-label">Background Color</label>
@@ -192,6 +194,51 @@
                                                    name="background_color"
                                                    value="{{ old('background_color') }}" required>
                                             @error('background_color')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Has Video</label>
+                                            <select name="has_video"
+                                                    class="form-control @error('has_video') is-invalid @enderror">
+                                                <option value="">Select option</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                            @error('has_video')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Play Audio Before</label>
+                                            <select name="play_audio_before"
+                                                    class="form-control @error('play_audio_before') is-invalid @enderror">
+                                                <option value="">Select option</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                            @error('play_audio_before')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="form-label">Option Multilingual</label>
+                                            <select name="multi_langual"
+                                                    class="form-control @error('multi_langual') is-invalid @enderror">
+                                                <option value="">Select option multilingual</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                            @error('multi_langual')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -218,4 +265,3 @@
     </div>
     <!-- end main content-->
 @endsection
-

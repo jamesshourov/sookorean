@@ -53,6 +53,19 @@
                                     <input type="hidden" name="id" value="{{ $row->id }}">
                                     <div class="row gy-4">
                                         <div class="col-md-12">
+
+                                            <label class="form-label">Title</label>
+                                            <input type="text"
+                                                   class="form-control @error('title') is-invalid @enderror"
+                                                   name="title"
+                                                   value="{{ $row->title }}" required>
+                                            @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="form-label">English Title</label>
                                             <input type="text"
                                                    class="form-control @error('title_english') is-invalid @enderror"
@@ -104,18 +117,18 @@
                                             @enderror
                                         </div>
 
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <label class="form-label">Arabic Title</label>--}}
-{{--                                            <input type="text"--}}
-{{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
-{{--                                                   name="title_arabic"--}}
-{{--                                                   value="{{ $row->title_arabic }}" dir="rtl">--}}
-{{--                                            @error('title_arabic')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-12">--}}
+                                        {{--                                            <label class="form-label">Arabic Title</label>--}}
+                                        {{--                                            <input type="text"--}}
+                                        {{--                                                   class="form-control @error('title_arabic') is-invalid @enderror"--}}
+                                        {{--                                                   name="title_arabic"--}}
+                                        {{--                                                   value="{{ $row->title_arabic }}" dir="rtl">--}}
+                                        {{--                                            @error('title_arabic')--}}
+                                        {{--                                            <span class="invalid-feedback" role="alert">--}}
+                                        {{--                                                <strong>{{ $message }}</strong>--}}
+                                        {{--                                            </span>--}}
+                                        {{--                                            @enderror--}}
+                                        {{--                                        </div>--}}
                                         <div class="col-md-12">
                                             <label class="form-label">Image</label>
                                             <div class="row">
@@ -159,91 +172,191 @@
                                                 @endif
                                             </div>
                                         </div>
-
-                                        <div class="col-md-12">
-                                            <label class="form-label">Video</label>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="file"
-                                                           class="form-control @error('video') is-invalid @enderror"
-                                                           name="video">
-                                                    @error('video')
-                                                    <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                                @if(!empty($row->video))
-                                                    <div class="col-md-4">
-                                                        <video class="w-75" src="{{ asset($row->video) }}"
-                                                               controls></video>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <table class="table table-bordered option-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>
-                                                        Option
-                                                    </th>
-                                                    <th>
-                                                        Value
-                                                    </th>
-                                                    <th>
-                                                        Action
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach($options as $key => $option)
-                                                    <tr class="option-{{ $key }}">
-                                                        <td>
-                                                            <input type="text"
-                                                                   class="form-control option_label option_label_{{ $key }}"
-                                                                   name="options[]" value="{{ $option->option_title }}" required>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text"
-                                                                   class="form-control option_value option_value_{{ $key }}"
-                                                                   name="option_values[]"  value="{{ $option->option_value }}" required>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-danger remove-button remove-button-{{ $key }}"
-                                                                    type="button" onclick="removeOption(1)">
-                                                                <i class="ri-delete-bin-3-line"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <td colspan="3" class="text-center">
-                                                        <button class="btn btn-success" type="button"
-                                                                onclick="addOption()">Add New
-                                                            Option
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-end">
-                                                        <strong>Answer</strong>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text"
-                                                               class="form-control @error('answer') is-invalid @enderror"
-                                                               name="answer" required value="{{ $row->answer }}">
-                                                        @error('answer')
+                                        @if($category->has_video == 1)
+                                            <div class="col-md-12">
+                                                <label class="form-label">Video</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="file"
+                                                               class="form-control @error('video') is-invalid @enderror"
+                                                               name="video">
+                                                        @error('video')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                         @enderror
-                                                    </td>
-                                                </tr>
-                                                </tfoot>
-                                            </table>
+                                                    </div>
+                                                    @if(!empty($row->video))
+                                                        <div class="col-md-4">
+                                                            <video class="w-75" src="{{ asset($row->video) }}"
+                                                                   controls></video>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="col-md-12">
+                                            @if($category->multi_langual == 0)
+                                                <div class="col-md-12">
+                                                    <table class="table table-bordered option-table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Option
+                                                            </th>
+                                                            <th>
+                                                                Value
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($options as $key => $option)
+                                                            <tr class="option-option-{{ $key }}">
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_label option_label_1"
+                                                                           name="options_english[]"
+                                                                           value="{{ $option->option_title_english }}"
+                                                                           required>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_value option_value_1"
+                                                                           name="option_values[]"
+                                                                           value="{{ $option->option_value }}" required>
+                                                                </td>
+                                                                <td>
+                                                                    <button
+                                                                        class="btn btn-danger remove-button remove-button-1"
+                                                                        type="button" onclick="removeOption(1)">
+                                                                        <i class="ri-delete-bin-3-line"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+                                                        <tr>
+                                                            <td colspan="3" class="text-center">
+                                                                <button class="btn btn-success" type="button"
+                                                                        onclick="addOption()">Add New
+                                                                    Option
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-end">
+                                                                <strong>Answer</strong>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text"
+                                                                       class="form-control @error('audio') is-invalid @enderror"
+                                                                       name="answer" required>
+                                                                @error('audio')
+                                                                <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                                @enderror
+                                                            </td>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            @else
+                                                <div class="col-md-12">
+                                                    <table class="table table-bordered option-table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Option English</th>
+                                                            <th>Option Japanese</th>
+                                                            <th>Option French</th>
+                                                            <th>Option Spanish</th>
+                                                            {{--                                                        <th>Option Arabic</th>--}}
+                                                            <th>
+                                                                Value
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($options as $key => $option)
+                                                            <tr class="option-{{ $key }}">
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_label option_label_{{ $key }}"
+                                                                           name="options_english[]"
+                                                                           value="{{ $option->option_title_english }}"
+                                                                           required>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_label option_label_{{ $key }}"
+                                                                           name="options_japanese[]"
+                                                                           value="{{ $option->option_title_japanese }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_label option_label_{{ $key }}"
+                                                                           name="options_french[]"
+                                                                           value="{{ $option->option_title_french }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_label option_label_{{ $key }}"
+                                                                           name="options_spanish[]"
+                                                                           value="{{ $option->option_title_spanish }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                           class="form-control option_value option_value_{{ $key }}"
+                                                                           name="option_values[]"
+                                                                           value="{{ $option->option_value }}" required>
+                                                                </td>
+                                                                <td>
+                                                                    <button
+                                                                        class="btn btn-danger remove-button remove-button-1"
+                                                                        type="button" onclick="removeOption(1)">
+                                                                        <i class="ri-delete-bin-3-line"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+                                                        <tr>
+                                                            <td colspan="@if($category->multi_langual == 0) 3 @else 6 @endif"
+                                                                class="text-end">
+                                                                <button class="btn btn-success" type="button"
+                                                                        onclick="addOption()">Add New
+                                                                    Option
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-end">
+                                                                <strong>Answer</strong>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text"
+                                                                       class="form-control @error('answer') is-invalid @enderror"
+                                                                       name="answer" value="{{ $row->answer }}"
+                                                                       required>
+                                                                @error('answer')
+                                                                <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                                @enderror
+                                                            </td>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-success">Update</button>
@@ -277,22 +390,50 @@
             $('.category').select2();
         });
 
+        @if($category->multi_langual == 0)
         function addOption() {
             let count = $('.option-table tbody tr').length;
             $('.option-table tbody').append(`
-                <tr class="option-${count + 1}">
-                    <td>
-                        <input type="text" class="form-control option_label option_label_${count + 1}" name="options[]" required>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
-                    </td>
-                </tr>
-            `);
+                    <tr class="option-${count + 1}">
+                        <td>
+                            <input type="text" class="form-control option_label option_label_${count + 1}" name="options[]" required>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
+                        </td>
+                    </tr>
+                `);
         }
+        @else
+        function addOption() {
+            let count = $('.option-table tbody tr').length;
+            $('.option-table tbody').append(`
+                        <tr class="option-${count + 1}">
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_english[]" required>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_japanese[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_french[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_label option_label_${count + 1}" name="options_spanish[]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control option_value option_value_${count + 1}" name="option_values[]" required>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger remove-button remove-button-${count + 1}" type="button" onclick="removeOption(${count + 1})"><i class="ri-delete-bin-3-line"></i></button>
+                            </td>
+                        </tr>
+                    `);
+        }
+        @endif
 
         function removeOption(id) {
             $('.option-table tbody tr.option-' + id).remove();

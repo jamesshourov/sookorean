@@ -17,7 +17,11 @@ class ContentController extends Controller
     {
         $content = DB::table('privacy_policies')->first();
         $data = array(
-            'content' => $request->data
+            'content_english' => $request->content_english,
+            'content_japanese' => $request->content_japanese,
+            'content_french' => $request->content_french,
+            'content_spanish' => $request->content_spanish,
+            'content_arabic' => $request->content_arabic,
         );
         if ($content) {
             $updated = DB::table('privacy_policies')->update($data);
@@ -46,7 +50,11 @@ class ContentController extends Controller
     {
         $content = DB::table('terms_and_conditions')->first();
         $data = array(
-            'content' => $request->data
+            'content_english' => $request->content_english,
+            'content_japanese' => $request->content_japanese,
+            'content_french' => $request->content_french,
+            'content_spanish' => $request->content_spanish,
+            'content_arabic' => $request->content_arabic,
         );
         if ($content) {
             $updated = DB::table('terms_and_conditions')->update($data);
